@@ -49,7 +49,6 @@ class _QuestionsViewState extends State<QuestionsView> {
           },
         ),
       ),
-      backgroundColor: Colors.blueGrey,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

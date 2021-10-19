@@ -48,7 +48,6 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,
-                        color: Colors.blueGrey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +55,8 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               "Bienvenue dans Question / Réponse",
                               style: TextStyle(
-                                color: Colors.white,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05,
                               ),
@@ -99,8 +99,9 @@ class _HomePageState extends State<HomePage> {
                                               const Icon(Icons.arrow_downward),
                                           iconSize: 24,
                                           elevation: 16,
-                                          style: const TextStyle(
-                                              color: Colors.black),
+                                          style: TextStyle(
+                                            color: Theme.of(context).colorScheme.onBackground,
+                                          ),
                                           underline: Container(
                                               height: 2, color: Colors.white),
                                           onChanged: (String? newValue) {
@@ -113,7 +114,11 @@ class _HomePageState extends State<HomePage> {
                                               .map((e) =>
                                                   DropdownMenuItem<String>(
                                                     value: e,
-                                                    child: Text(e),
+                                                    child: Text(
+                                                      e,
+                                                      style: TextStyle(
+                                                          color: Colors.black),
+                                                    ),
                                                   ))
                                               .toList(),
                                         ),
