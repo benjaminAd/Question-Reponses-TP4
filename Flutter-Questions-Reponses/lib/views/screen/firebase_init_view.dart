@@ -54,6 +54,10 @@ class FirebaseInit extends StatelessWidget {
       ),
     );
 
+    final floatingActionButtonTheme = FloatingActionButtonThemeData(
+      elevation: 10,
+    );
+
     final themeData = ThemeData(
       colorScheme: colorScheme,
       snackBarTheme: snackBarTheme,
@@ -61,6 +65,7 @@ class FirebaseInit extends StatelessWidget {
       backgroundColor: colorScheme.background,
       inputDecorationTheme: inputDecorationTheme,
       scaffoldBackgroundColor: colorScheme.background,
+      floatingActionButtonTheme: floatingActionButtonTheme,
       tabBarTheme: tabBarTheme,
     );
     return MaterialApp(

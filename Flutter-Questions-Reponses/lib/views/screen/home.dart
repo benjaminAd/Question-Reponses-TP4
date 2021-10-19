@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:questions_reponses/Utils/constants.dart';
 import 'package:questions_reponses/cubit/dropdown_cubit.dart';
@@ -100,10 +101,15 @@ class _HomePageState extends State<HomePage> {
                                           iconSize: 24,
                                           elevation: 16,
                                           style: TextStyle(
-                                            color: Theme.of(context).colorScheme.onBackground,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onBackground,
                                           ),
                                           underline: Container(
-                                              height: 2, color: Colors.white),
+                                              height: 2,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onBackground),
                                           onChanged: (String? newValue) {
                                             context
                                                 .read<DropdownCubit>()
@@ -163,7 +169,47 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showPicker(context);
+          },
+          child: Icon(FontAwesomeIcons.cog),
+          backgroundColor: Theme.of(context).colorScheme.primary),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            color: Theme.of(context).colorScheme.primary,
+            child: SafeArea(
+              child: Container(
+                child: new Wrap(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Thème",
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,fontSize:MediaQuery.of(context).size.width*0.05),
+                        ),
+                        Switch(
+                          value: false,
+                          onChanged: (value) {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 
   Widget goToGame() {
