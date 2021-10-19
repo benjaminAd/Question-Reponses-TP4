@@ -103,15 +103,16 @@ class _AddQuestionState extends State<AddQuestion> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
+                        Text("La réponse à votre question"),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.7,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("La réponse à votre question"),
+                              Text("Faux"),
                               Switch(
-                                  value: _isSwitchOn, onChanged: _updateAnswer)
+                                  value: _isSwitchOn, onChanged: _updateAnswer),
+                              Text("Vrai"),
                             ],
                           ),
                         ),
