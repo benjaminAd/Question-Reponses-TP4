@@ -6,14 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:questions_reponses/Utils/constants.dart';
 import 'package:questions_reponses/cubit/dropdown_cubit.dart';
-import 'package:questions_reponses/cubit/game_on_cubit.dart';
-import 'package:questions_reponses/cubit/question_cubit.dart';
-import 'package:questions_reponses/data/model/question.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
 import 'package:questions_reponses/views/screen/add_question_view.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
-import 'package:questions_reponses/views/screen/questions_view.dart';
 
 import 'go_to_game.dart';
 
