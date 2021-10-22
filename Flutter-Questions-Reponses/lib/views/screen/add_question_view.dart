@@ -10,6 +10,7 @@ import 'package:questions_reponses/cubit/image_cubit.dart';
 import 'package:questions_reponses/data/model/question.dart';
 import 'package:questions_reponses/data/provider/image_provider.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
+import 'package:questions_reponses/views/screen/home.dart';
 
 class AddQuestion extends StatefulWidget {
   AddQuestion({Key? key}) : super(key: key);
@@ -124,7 +125,6 @@ class _AddQuestionState extends State<AddQuestion> {
                                 _imageFirebaseProvider
                                     .uploadImage(state)
                                     .then((value) {
-                                  print("Je suis ici 2");
                                   _questionsFirebaseProvider
                                       .addQuestion(new Question(
                                           _questionController.text,
@@ -132,14 +132,12 @@ class _AddQuestionState extends State<AddQuestion> {
                                           _themeController.text,
                                           _isSwitchOn))
                                       .then((value) {
-                                    Scaffold.of(ctxScaffold)
-                                        .showSnackBar(SnackBar(
-                                      content:
-                                          Text("Votre question a été ajouter"),
-                                      duration: Duration(milliseconds: 500),
-                                    ));
                                     //Navigator.push(context,
                                     //  MaterialPageRoute(builder: (context)=>QuestionsView(questions: questions,)));
+                                    Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
                                   });
                                 });
                               } else {
