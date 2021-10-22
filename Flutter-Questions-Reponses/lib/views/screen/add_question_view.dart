@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
@@ -11,6 +12,7 @@ import 'package:questions_reponses/data/model/question.dart';
 import 'package:questions_reponses/data/provider/image_provider.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
 import 'package:questions_reponses/views/screen/home.dart';
+import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 class AddQuestion extends StatefulWidget {
   AddQuestion({Key? key}) : super(key: key);
@@ -158,6 +160,13 @@ class _AddQuestionState extends State<AddQuestion> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showPicker2(context);
+          },
+          child: Icon(FontAwesomeIcons.cog),
+          backgroundColor: Theme.of(context).colorScheme.primary),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -217,5 +226,33 @@ class _AddQuestionState extends State<AddQuestion> {
     _themeController.dispose();
     _questionController.dispose();
     super.dispose();
+  }
+
+  void _showPicker2(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            color: Theme.of(context).colorScheme.primary,
+            height: MediaQuery.of(context).size.height * 0.1,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Thème",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontSize: MediaQuery.of(context).size.width * 0.05),
+                    ),
+                    ChangeThemeButtonWidget(),
+                  ],
+                )
+              ],
+            ),
+          );
+        });
   }
 }

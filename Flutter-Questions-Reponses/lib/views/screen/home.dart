@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                                         value: e,
                                         child: Text(
                                           e,
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Colors.white,)
                                         ),
                                       ))
                                   .toList(),
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _showPicker(context, false);
+            _showPicker(context);
           },
           child: Icon(FontAwesomeIcons.cog),
           backgroundColor: Theme.of(context).colorScheme.primary),
@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _showPicker(BuildContext context, bool state) {
+  void _showPicker(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (context) {

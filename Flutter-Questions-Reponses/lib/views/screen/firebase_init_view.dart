@@ -1,12 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:questions_reponses/Utils/constants.dart';
-import 'package:questions_reponses/cubit/dropdown_cubit.dart';
-import 'package:questions_reponses/cubit/game_on_cubit.dart';
-import 'package:questions_reponses/cubit/theme_cubit.dart';
 import 'package:questions_reponses/provider/theme_provider.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
@@ -95,10 +90,10 @@ class FirebaseInit extends StatelessWidget {
     final themeDataDark = ThemeData(
       colorScheme: darkcolorScheme,
       snackBarTheme: snackBarTheme,
-      primaryColor: colorScheme.primary,
-      backgroundColor: colorScheme.background,
+      primaryColor: darkcolorScheme.primary,
+      backgroundColor: darkcolorScheme.background,
       inputDecorationTheme: inputDecorationTheme,
-      scaffoldBackgroundColor: colorScheme.background,
+      scaffoldBackgroundColor: darkcolorScheme.background,
       floatingActionButtonTheme: floatingActionButtonTheme,
       tabBarTheme: tabBarTheme,
     );
@@ -120,10 +115,7 @@ class FirebaseInit extends StatelessWidget {
                   return ErrorView(error: snapshot.error.toString());
                 }
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return BlocProvider(
-                    create: (context) => ThemeCubit(),
-                    child: HomePage(),
-                  );
+                  return HomePage();
                 }
                 return Loading();
               },
