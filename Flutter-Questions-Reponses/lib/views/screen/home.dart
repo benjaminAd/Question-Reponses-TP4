@@ -10,6 +10,7 @@ import 'package:questions_reponses/data/provider/questions_firebase_provider.dar
 import 'package:questions_reponses/views/screen/add_question_view.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
+import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 import 'go_to_game.dart';
 
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _showPicker(context);
+            _showPicker(context, false);
           },
           child: Icon(FontAwesomeIcons.cog),
           backgroundColor: Theme.of(context).colorScheme.primary),
@@ -160,36 +161,29 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _showPicker(context) {
+  void _showPicker(BuildContext context, bool state) {
     showModalBottomSheet(
         context: context,
-        builder: (BuildContext bc) {
+        builder: (context) {
           return Container(
             color: Theme.of(context).colorScheme.primary,
-            child: SafeArea(
-              child: Container(
-                child: new Wrap(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Thème",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.05),
-                        ),
-                        Switch(
-                          value: false,
-                          onChanged: (value) {},
-                        ),
-                      ],
+            height: MediaQuery.of(context).size.height*0.1,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Thème",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontSize: MediaQuery.of(context).size.width * 0.05),
                     ),
+                    ChangeThemeButtonWidget(),
                   ],
-                ),
-              ),
+                )
+              ],
             ),
           );
         });
