@@ -1,6 +1,8 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:questions_reponses/provider/theme_provider.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
 
@@ -25,7 +27,7 @@ class FirebaseInit extends StatelessWidget {
       ),
     );
 
-    const colorScheme = ColorScheme.highContrastLight(
+    const colorScheme = ColorScheme.light(
       primary: Color(0xFF5D1049),
       secondary: Color(0xFFE30425),
       primaryVariant: Color(0xFF5D1049),
@@ -39,6 +41,22 @@ class FirebaseInit extends StatelessWidget {
       onError: Color(0xFFFD9726),
       onBackground: Color(0xFF000000),
       brightness: Brightness.light,
+    );
+
+    const darkcolorScheme = ColorScheme.dark(
+      primary: Color(0xFF5D1049),
+      secondary: Color(0xFFE30425),
+      primaryVariant: Color(0xFF5D1049),
+      secondaryVariant: Color(0xFFE30425),
+      surface: Color(0xFFFFFFFF),
+      background: Color(0xFF000000),
+      error: Color(0xFFB00020),
+      onPrimary: Color(0xFFFFFFFF),
+      onSecondary: Color(0xFFFFFFFF),
+      onSurface: Color(0xFF000000),
+      onError: Color(0xFFFD9726),
+      onBackground: Color(0xFF000000),
+      brightness: Brightness.dark,
     );
 
     final tabBarTheme = TabBarTheme(
@@ -58,7 +76,7 @@ class FirebaseInit extends StatelessWidget {
       elevation: 10,
     );
 
-    final themeData = ThemeData(
+    final themeDataLight = ThemeData(
       colorScheme: colorScheme,
       snackBarTheme: snackBarTheme,
       primaryColor: colorScheme.primary,
@@ -68,21 +86,41 @@ class FirebaseInit extends StatelessWidget {
       floatingActionButtonTheme: floatingActionButtonTheme,
       tabBarTheme: tabBarTheme,
     );
-    return MaterialApp(
-        title: 'Questions réponses',
-        debugShowCheckedModeBanner: false,
-        theme: themeData,
-        home: FutureBuilder(
-          future: _initialization,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return ErrorView(error: snapshot.error.toString());
-            }
-            if (snapshot.connectionState == ConnectionState.done) {
-              return HomePage();
-            }
-            return Loading();
-          },
-        ));
+
+    final themeDataDark = ThemeData(
+      colorScheme: darkcolorScheme,
+      snackBarTheme: snackBarTheme,
+      primaryColor: darkcolorScheme.primary,
+      backgroundColor: darkcolorScheme.background,
+      inputDecorationTheme: inputDecorationTheme,
+      scaffoldBackgroundColor: darkcolorScheme.background,
+      floatingActionButtonTheme: floatingActionButtonTheme,
+      tabBarTheme: tabBarTheme,
+    );
+
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
+            title: 'Questions réponses',
+            debugShowCheckedModeBanner: false,
+            themeMode: themeProvider.themeMode,
+            theme: themeDataLight,
+            darkTheme: themeDataDark,
+            home: FutureBuilder(
+              future: _initialization,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return ErrorView(error: snapshot.error.toString());
+                }
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return HomePage();
+                }
+                return Loading();
+              },
+            ));
+      },
+    );
   }
 }
