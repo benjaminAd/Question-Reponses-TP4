@@ -49,6 +49,7 @@ class _QuestionsViewState extends State<QuestionsView> {
           },
         ),
       ),
+      backgroundColor: Colors.blueGrey,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,12 +88,12 @@ class _QuestionsViewState extends State<QuestionsView> {
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.2,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child:
                       BlocBuilder<QuestionCubit, Triplet<Question, int, int>>(
-                    builder: (context, pair) => Text(pair.key.question, style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
+                    builder: (context, pair) => Text(pair.key.question),
                   ),
                 ),
               ),
