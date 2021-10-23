@@ -33,7 +33,6 @@ class _AddQuestionState extends State<AddQuestion> {
       appBar: AppBar(
         title: Text("Ajout d'une question"),
       ),
-      backgroundColor: Colors.blueGrey,
       body: Provider<ImageCubit>(
         create: (context) => ImageCubit(),
         child: SingleChildScrollView(
@@ -52,31 +51,31 @@ class _AddQuestionState extends State<AddQuestion> {
                         ),
                         Text("Ajouter une thématique et une question"),
                         Container(
+                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
                             controller: _themeController,
                             decoration: InputDecoration(
-                                fillColor: Color.fromRGBO(255, 255, 255, 1),
                                 hintText: "Ajouter un thème"),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         Text("Ajouter une question"),
                         Container(
+                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
                             controller: _questionController,
                             decoration: InputDecoration(
-                                fillColor: Color.fromRGBO(255, 255, 255, 1),
                                 hintText: "Ajouter une question"),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.1,
+                          height: MediaQuery.of(context).size.height * 0.03,
                         ),
                         if (state != null)
                           Image.file(
@@ -103,15 +102,16 @@ class _AddQuestionState extends State<AddQuestion> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
+                        Text("La réponse à votre question"),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.7,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("La réponse à votre question"),
+                              Text("Faux"),
                               Switch(
-                                  value: _isSwitchOn, onChanged: _updateAnswer)
+                                  value: _isSwitchOn, onChanged: _updateAnswer),
+                              Text("Vrai"),
                             ],
                           ),
                         ),
