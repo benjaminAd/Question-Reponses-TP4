@@ -10,7 +10,8 @@ class Loading extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+              color: Theme.of(context).colorScheme.onBackground),
           width: 60,
           height: 60,
         ),
@@ -19,7 +20,7 @@ class Loading extends StatelessWidget {
           child: Text(
             "Récupération des données...",
             style: TextStyle(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onBackground,
             ),
           ),
         )

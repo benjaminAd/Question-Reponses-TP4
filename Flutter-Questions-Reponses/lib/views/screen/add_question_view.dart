@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
@@ -10,6 +11,8 @@ import 'package:questions_reponses/cubit/image_cubit.dart';
 import 'package:questions_reponses/data/model/question.dart';
 import 'package:questions_reponses/data/provider/image_provider.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
+import 'package:questions_reponses/views/screen/home.dart';
+import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 class AddQuestion extends StatefulWidget {
   AddQuestion({Key? key}) : super(key: key);
@@ -33,7 +36,6 @@ class _AddQuestionState extends State<AddQuestion> {
       appBar: AppBar(
         title: Text("Ajout d'une question"),
       ),
-      backgroundColor: Colors.blueGrey,
       body: Provider<ImageCubit>(
         create: (context) => ImageCubit(),
         child: SingleChildScrollView(
@@ -52,31 +54,31 @@ class _AddQuestionState extends State<AddQuestion> {
                         ),
                         Text("Ajouter une thématique et une question"),
                         Container(
+                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
                             controller: _themeController,
                             decoration: InputDecoration(
-                                fillColor: Color.fromRGBO(255, 255, 255, 1),
                                 hintText: "Ajouter un thème"),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         Text("Ajouter une question"),
                         Container(
+                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
                             controller: _questionController,
                             decoration: InputDecoration(
-                                fillColor: Color.fromRGBO(255, 255, 255, 1),
                                 hintText: "Ajouter une question"),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.1,
+                          height: MediaQuery.of(context).size.height * 0.03,
                         ),
                         if (state != null)
                           Image.file(
@@ -103,15 +105,16 @@ class _AddQuestionState extends State<AddQuestion> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
+                        Text("La réponse à votre question"),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.7,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("La réponse à votre question"),
+                              Text("Faux"),
                               Switch(
-                                  value: _isSwitchOn, onChanged: _updateAnswer)
+                                  value: _isSwitchOn, onChanged: _updateAnswer),
+                              Text("Vrai"),
                             ],
                           ),
                         ),
@@ -124,7 +127,6 @@ class _AddQuestionState extends State<AddQuestion> {
                                 _imageFirebaseProvider
                                     .uploadImage(state)
                                     .then((value) {
-                                  print("Je suis ici 2");
                                   _questionsFirebaseProvider
                                       .addQuestion(new Question(
                                           _questionController.text,
@@ -132,14 +134,12 @@ class _AddQuestionState extends State<AddQuestion> {
                                           _themeController.text,
                                           _isSwitchOn))
                                       .then((value) {
-                                    Scaffold.of(ctxScaffold)
-                                        .showSnackBar(SnackBar(
-                                      content:
-                                          Text("Votre question a été ajouter"),
-                                      duration: Duration(milliseconds: 500),
-                                    ));
                                     //Navigator.push(context,
                                     //  MaterialPageRoute(builder: (context)=>QuestionsView(questions: questions,)));
+                                    Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
                                   });
                                 });
                               } else {
@@ -160,6 +160,13 @@ class _AddQuestionState extends State<AddQuestion> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showPicker2(context);
+          },
+          child: Icon(FontAwesomeIcons.cog),
+          backgroundColor: Theme.of(context).colorScheme.primary),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -219,5 +226,33 @@ class _AddQuestionState extends State<AddQuestion> {
     _themeController.dispose();
     _questionController.dispose();
     super.dispose();
+  }
+
+  void _showPicker2(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            color: Theme.of(context).colorScheme.primary,
+            height: MediaQuery.of(context).size.height * 0.1,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Thème",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontSize: MediaQuery.of(context).size.width * 0.05),
+                    ),
+                    ChangeThemeButtonWidget(),
+                  ],
+                )
+              ],
+            ),
+          );
+        });
   }
 }
