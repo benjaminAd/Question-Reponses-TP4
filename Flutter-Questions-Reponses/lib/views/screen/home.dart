@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:questions_reponses/Utils/constants.dart';
 import 'package:questions_reponses/cubit/dropdown_cubit.dart';
@@ -11,7 +10,6 @@ import 'package:questions_reponses/views/screen/add_question_view.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/widget/floating_action_custom.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
-import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 import 'go_to_game.dart';
 

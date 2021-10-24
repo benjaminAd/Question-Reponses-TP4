@@ -12,7 +12,6 @@ import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/screen/home.dart';
 import 'package:questions_reponses/views/widget/floating_action_custom.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
-import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 class QuestionsView extends StatefulWidget {
   List<Question> _questions = [];

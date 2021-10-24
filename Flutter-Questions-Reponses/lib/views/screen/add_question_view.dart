@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
@@ -13,7 +12,6 @@ import 'package:questions_reponses/data/provider/image_provider.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
 import 'package:questions_reponses/views/screen/home.dart';
 import 'package:questions_reponses/views/widget/floating_action_custom.dart';
-import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 class AddQuestion extends StatefulWidget {
   AddQuestion({Key? key}) : super(key: key);
@@ -146,6 +144,7 @@ class _AddQuestionState extends State<AddQuestion> {
                                   });
                                 });
                               } else {
+                                // ignore: deprecated_member_use
                                 Scaffold.of(ctxScaffold).showSnackBar(SnackBar(
                                   content:
                                       Text("Veuillez remplir tout les liens"),

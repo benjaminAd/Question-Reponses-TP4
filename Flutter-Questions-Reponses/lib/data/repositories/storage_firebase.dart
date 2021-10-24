@@ -1,7 +1,8 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart';
 
 class StorageFirebase {
   FirebaseStorage _storage = FirebaseStorage.instance;
