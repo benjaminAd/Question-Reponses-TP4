@@ -2,7 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:questions_reponses/provider/theme_provider.dart';
+import 'package:questions_reponses/notifier/theme_provider.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
 

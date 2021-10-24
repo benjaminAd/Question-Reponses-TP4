@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:questions_reponses/provider/theme_provider.dart';
+import 'package:questions_reponses/notifier/theme_provider.dart';
 
 class ChangeThemeButtonWidget extends StatelessWidget {
   @override
