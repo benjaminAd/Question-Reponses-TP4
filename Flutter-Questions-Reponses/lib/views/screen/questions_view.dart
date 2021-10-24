@@ -1,12 +1,16 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:questions_reponses/cubit/question_cubit.dart';
 import 'package:questions_reponses/Utils/triplet.dart';
 import 'package:questions_reponses/data/model/question.dart';
 import 'package:questions_reponses/data/provider/image_provider.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
 import 'package:questions_reponses/views/screen/home.dart';
+import 'package:questions_reponses/views/widget/floating_action_custom.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
 import 'package:questions_reponses/views/widget/switch_theme.dart';
 
@@ -88,15 +92,12 @@ class _QuestionsViewState extends State<QuestionsView> {
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.2,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onPrimary,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child:
                       BlocBuilder<QuestionCubit, Triplet<Question, int, int>>(
                     builder: (context, pair) => Text(
                       pair.key.question,
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onBackground),
                     ),
                   ),
                 ),
@@ -182,41 +183,10 @@ class _QuestionsViewState extends State<QuestionsView> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showPicker(context);
-          },
-          child: Icon(FontAwesomeIcons.cog),
-          backgroundColor: Theme.of(context).colorScheme.primary),
+      floatingActionButton: FloatingActionCustom(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
-  void _showPicker(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            color: Theme.of(context).colorScheme.primary,
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Thème",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                          fontSize: MediaQuery.of(context).size.width * 0.05),
-                    ),
-                    ChangeThemeButtonWidget(),
-                  ],
-                )
-              ],
-            ),
-          );
-        });
-  }
+
 }

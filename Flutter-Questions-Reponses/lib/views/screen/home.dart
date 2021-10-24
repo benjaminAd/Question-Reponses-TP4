@@ -9,6 +9,7 @@ import 'package:questions_reponses/cubit/dropdown_cubit.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
 import 'package:questions_reponses/views/screen/add_question_view.dart';
 import 'package:questions_reponses/views/widget/error_view.dart';
+import 'package:questions_reponses/views/widget/floating_action_custom.dart';
 import 'package:questions_reponses/views/widget/loading_view.dart';
 import 'package:questions_reponses/views/widget/switch_theme.dart';
 
@@ -49,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "Bienvenue dans Question / Réponse",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: MediaQuery.of(context).size.width * 0.05,
                   ),
                 ),
@@ -84,15 +84,8 @@ class _HomePageState extends State<HomePage> {
                               icon: const Icon(Icons.arrow_downward),
                               iconSize: 24,
                               elevation: 16,
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                              ),
                               underline: Container(
-                                  height: 2,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground),
+                                  height: 2,),
                               onChanged: (String? newValue) {
                                 context
                                     .read<DropdownCubit>()
@@ -104,7 +97,6 @@ class _HomePageState extends State<HomePage> {
                                         value: e,
                                         child: Text(
                                           e,
-                                          style: TextStyle(color: Colors.white,)
                                         ),
                                       ))
                                   .toList(),
@@ -151,41 +143,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showPicker(context);
-          },
-          child: Icon(FontAwesomeIcons.cog),
-          backgroundColor: Theme.of(context).colorScheme.primary),
+      floatingActionButton: FloatingActionCustom(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
-  }
-
-  void _showPicker(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            color: Theme.of(context).colorScheme.primary,
-            height: MediaQuery.of(context).size.height*0.1,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Thème",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                          fontSize: MediaQuery.of(context).size.width * 0.05),
-                    ),
-                    ChangeThemeButtonWidget(),
-                  ],
-                )
-              ],
-            ),
-          );
-        });
   }
 }

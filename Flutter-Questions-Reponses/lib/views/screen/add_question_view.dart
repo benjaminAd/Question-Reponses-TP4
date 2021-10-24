@@ -12,6 +12,7 @@ import 'package:questions_reponses/data/model/question.dart';
 import 'package:questions_reponses/data/provider/image_provider.dart';
 import 'package:questions_reponses/data/provider/questions_firebase_provider.dart';
 import 'package:questions_reponses/views/screen/home.dart';
+import 'package:questions_reponses/views/widget/floating_action_custom.dart';
 import 'package:questions_reponses/views/widget/switch_theme.dart';
 
 class AddQuestion extends StatefulWidget {
@@ -54,13 +55,14 @@ class _AddQuestionState extends State<AddQuestion> {
                         ),
                         Text("Ajouter une thématique et une question"),
                         Container(
-                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
+                          margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.01),
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
                             controller: _themeController,
-                            decoration: InputDecoration(
-                                hintText: "Ajouter un thème"),
+                            decoration:
+                                InputDecoration(hintText: "Ajouter un thème"),
                           ),
                         ),
                         SizedBox(
@@ -68,7 +70,8 @@ class _AddQuestionState extends State<AddQuestion> {
                         ),
                         Text("Ajouter une question"),
                         Container(
-                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
+                          margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.01),
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
@@ -137,9 +140,9 @@ class _AddQuestionState extends State<AddQuestion> {
                                     //Navigator.push(context,
                                     //  MaterialPageRoute(builder: (context)=>QuestionsView(questions: questions,)));
                                     Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
                                   });
                                 });
                               } else {
@@ -160,12 +163,7 @@ class _AddQuestionState extends State<AddQuestion> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showPicker2(context);
-          },
-          child: Icon(FontAwesomeIcons.cog),
-          backgroundColor: Theme.of(context).colorScheme.primary),
+      floatingActionButton: FloatingActionCustom(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
@@ -226,33 +224,5 @@ class _AddQuestionState extends State<AddQuestion> {
     _themeController.dispose();
     _questionController.dispose();
     super.dispose();
-  }
-
-  void _showPicker2(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            color: Theme.of(context).colorScheme.primary,
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Thème",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                          fontSize: MediaQuery.of(context).size.width * 0.05),
-                    ),
-                    ChangeThemeButtonWidget(),
-                  ],
-                )
-              ],
-            ),
-          );
-        });
   }
 }
