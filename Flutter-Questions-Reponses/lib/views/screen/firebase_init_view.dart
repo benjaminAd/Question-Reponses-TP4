@@ -28,44 +28,41 @@ class FirebaseInit extends StatelessWidget {
     );
 
     const colorScheme = ColorScheme.light(
-      primary: Color(0xFF5D1049),
-      secondary: Color(0xFFE30425),
-      primaryVariant: Color(0xFF5D1049),
-      secondaryVariant: Color(0xFFE30425),
+      primary: Color(0xFF9FFFE0),
+      secondary: Color(0xFFFFBCAF),
+      primaryVariant: Color(0xFF9FFFE0),
+      secondaryVariant: Color(0xFFFFBCAF),
       surface: Color(0xFFFFFFFF),
       background: Color(0xFFF4E2ED),
       error: Color(0xFFB00020),
-      onPrimary: Color(0xFFFFFFFF),
-      onSecondary: Color(0xFFFFFFFF),
+      onPrimary: Color(0xFF000000),
+      onSecondary: Color(0xFF000000),
       onSurface: Color(0xFF000000),
       onError: Color(0xFFFD9726),
-      onBackground: Color(0xFF000000),
+      onBackground: Color(0xFFFFFFFF),
       brightness: Brightness.light,
     );
 
     const darkcolorScheme = ColorScheme.dark(
-      primary: Color(0xFF5D1049),
-      secondary: Color(0xFFE30425),
-      primaryVariant: Color(0xFF5D1049),
-      secondaryVariant: Color(0xFFE30425),
+      primary: Color(0xFF2BBD7E),
+      secondary: Color(0xFFC85A54),
+      primaryVariant: Color(0xFF2BBD7E),
+      secondaryVariant: Color(0xFFC85A54),
       surface: Color(0xFFFFFFFF),
       background: Color(0xFF000000),
       error: Color(0xFFB00020),
-      onPrimary: Color(0xFFFFFFFF),
-      onSecondary: Color(0xFFFFFFFF),
+      onPrimary: Color(0xFF000000),
+      onSecondary: Color(0xFF0000),
       onSurface: Color(0xFF000000),
       onError: Color(0xFFFD9726),
-      onBackground: Color(0xFF000000),
+      onBackground: Color(0xFFFFFFFF),
       brightness: Brightness.dark,
     );
 
     final tabBarTheme = TabBarTheme(
-      labelColor: colorScheme.secondary,
-      unselectedLabelColor: colorScheme.onBackground,
       indicator: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: colorScheme.primary,
             width: 2,
           ),
         ),
