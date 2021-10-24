@@ -22,6 +22,15 @@ class FirebaseInit extends StatelessWidget {
 
     final snackBarTheme = SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
+      backgroundColor: ColorScheme.light().onBackground,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
+    final darksnackBarTheme = SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: ColorScheme.dark().onBackground,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -52,7 +61,7 @@ class FirebaseInit extends StatelessWidget {
       background: Color(0xFF000000),
       error: Color(0xFFB00020),
       onPrimary: Color(0xFF000000),
-      onSecondary: Color(0xFF0000),
+      onSecondary: Color(0xFF000000),
       onSurface: Color(0xFF000000),
       onError: Color(0xFFFD9726),
       onBackground: Color(0xFFFFFFFF),
@@ -86,7 +95,7 @@ class FirebaseInit extends StatelessWidget {
 
     final themeDataDark = ThemeData(
       colorScheme: darkcolorScheme,
-      snackBarTheme: snackBarTheme,
+      snackBarTheme: darksnackBarTheme,
       primaryColor: darkcolorScheme.primary,
       backgroundColor: darkcolorScheme.background,
       inputDecorationTheme: inputDecorationTheme,
